@@ -19,4 +19,11 @@ public class UserController {
         // Saves new user to the DB & returns saved entity
         return userRepository.save(newUser);
     }
+
+    // Get all Users
+    @GetMapping("/users") // Maps HTTP GET requests to this method
+    List<User> getAllUsers() {
+        // Retrieve all users from the database
+        return userRepository.findAll();
+    }
 }

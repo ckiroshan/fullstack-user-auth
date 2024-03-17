@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController // Indicate this class is a REST controller
+@CrossOrigin("http://localhost:5173") // Enable CORS for requests coming from given endpoint
 public class UserController {
 
     @Autowired // Autowire UserRepository to enable dependency injection

@@ -10,7 +10,7 @@ function Home() {
 
   const loadUsers = async () => {
     const results = await axios.get("http://localhost:8080/users");
-    console.log(results.data);
+    setUsers(results.data);
   };
 
   return (
@@ -19,19 +19,27 @@ function Home() {
         <table className="table table-hover border shadow">
           <thead className="table-dark">
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">First</th>
-              <th scope="col">Last</th>
-              <th scope="col">Handle</th>
+              <th scope="col">ID</th>
+              <th scope="col">Name</th>
+              <th scope="col">Username</th>
+              <th scope="col">Email</th>
+              <th scope="col">Action</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
+            {users.map((user, index) => (
+              <tr key={index}>
+                <th scope="row">{index + 1}</th>
+                <td>{user.name}</td>
+                <td>{user.username}</td>
+                <td>{user.email}</td>
+                <td>
+                  <button className="btn btn-primary mx-2">View</button>
+                  <button className="btn btn-outline-primary mx-2">Edit</button>
+                  <button className="btn btn-danger mx-2">Delete</button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

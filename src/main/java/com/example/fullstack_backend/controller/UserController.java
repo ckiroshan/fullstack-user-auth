@@ -38,5 +38,23 @@ public class UserController {
                 .orElseThrow(() -> new UserNotFoundException(id));
     }
 
-
+    // Update user by ID
+    @PutMapping("/users/{id}")
+    User updateUserById(@RequestBody User newUser, @PathVariable Long id) {
+        // Updates a user by their ID.
+        return userRepository.findById(id)
+                // If a user is found, user object is passed to below lambda function.
+                .map(user -> {
+                    // Update the user's username with the new username from 'newUser'.
+                    user.setUsername(newUser.getUsername());
+                    // Update the user's name with the new name from 'newUser'.
+                    user.setName(newUser.getName());
+                    // Update the user's email with the new email from 'newUser'.
+                    user.setEmail(newUser.getEmail());
+                    // Save the updated user object back to the repository and return it.
+                    return userRepository.save(user);
+                })
+                // If no user is found, a 'UserNotFoundException' is thrown.
+                .orElseThrow(() -> new UserNotFoundException(id));
+    }
 }

@@ -30,7 +30,7 @@ function Home() {
           <tbody>
             {users.map((user, index) => (
               <tr key={index}>
-                <th scope="row">{index + 1}</th>
+                <th scope="row">{user.id}</th>
                 <td>{user.name}</td>
                 <td>{user.username}</td>
                 <td>{user.email}</td>

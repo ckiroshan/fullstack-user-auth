@@ -57,4 +57,18 @@ public class UserController {
                 // If no user is found, a 'UserNotFoundException' is thrown.
                 .orElseThrow(() -> new UserNotFoundException(id));
     }
+
+    // Delete by ID
+    @DeleteMapping("/users/{id}")
+    String deleteUser(@PathVariable Long id) {
+        // Check if a user with the given ID exists in the repository.
+        if (!userRepository.existsById(id)) {
+            // If no user is found, a 'UserNotFoundException' is thrown.
+            throw new UserNotFoundException(id);
+        }
+        // If user exists, delete user with specified ID from the repository.
+        userRepository.deleteById(id);
+        // Return a message indicating the user has been deleted.
+        return "User with ID " + id + " has been deleted!";
+    }
 }

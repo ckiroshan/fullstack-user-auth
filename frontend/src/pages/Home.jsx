@@ -42,6 +42,9 @@ function Home() {
                 <td>{user.username}</td>
                 <td>{user.email}</td>
                 <td>
+                  <Link to={`/edituser/${user.id}`} className="btn btn-outline-primary mx-2">
+                    Edit
+                  </Link>
                   <button className="btn btn-danger mx-2" onClick={() => deleteUser(user.id)}>
                     Delete
                   </button>
